@@ -6,9 +6,9 @@
 
 // Database configuration
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'fitness_tracker');
+define('DB_NAME', 'fittrack');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'jaykum1210');
 define('DB_CHARSET', 'utf8mb4');
 
 class Database {

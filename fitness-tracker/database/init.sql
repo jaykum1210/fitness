@@ -2,8 +2,7 @@
 -- Create database and tables for authentication system
 
 -- Create database
-CREATE DATABASE IF NOT EXISTS fitness_tracker;
-USE fitness_tracker;
+USE fittrack;
 
 -- Users table for authentication
 CREATE TABLE IF NOT EXISTS users (
