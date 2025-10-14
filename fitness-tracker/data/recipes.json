@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Protein Power Smoothie",
+    "category": "breakfast",
+    "calories": 320,
+    "protein": 28,
+    "carbs": 35,
+    "fats": 8,
+    "prepTime": 5,
+    "ingredients": ["Banana", "Protein powder", "Almond milk", "Peanut butter", "Ice"],
+    "instructions": "Blend all ingredients until smooth. Serve immediately."
+  },
+  {
+    "id": 2,
+    "name": "Grilled Chicken Bowl",
+    "category": "lunch",
+    "calories": 450,
+    "protein": 42,
+    "carbs": 38,
+    "fats": 12,
+    "prepTime": 20,
+    "ingredients": ["Chicken breast", "Brown rice", "Broccoli", "Bell peppers", "Olive oil"],
+    "instructions": "Grill chicken, steam vegetables, serve over rice with light dressing."
+  },
+  {
+    "id": 3,
+    "name": "Salmon & Sweet Potato",
+    "category": "dinner",
+    "calories": 520,
+    "protein": 38,
+    "carbs": 45,
+    "fats": 18,
+    "prepTime": 30,
+    "ingredients": ["Salmon fillet", "Sweet potato", "Asparagus", "Lemon", "Herbs"],
+    "instructions": "Bake salmon and sweet potato at 400°F for 25 minutes. Steam asparagus."
+  },
+  {
+    "id": 4,
+    "name": "Greek Yogurt Parfait",
+    "category": "snack",
+    "calories": 180,
+    "protein": 15,
+    "carbs": 22,
+    "fats": 4,
+    "prepTime": 3,
+    "ingredients": ["Greek yogurt", "Berries", "Granola", "Honey"],
+    "instructions": "Layer yogurt, berries, and granola. Drizzle with honey."
+  },
+  {
+    "id": 5,
+    "name": "Turkey Wrap",
+    "category": "lunch",
+    "calories": 380,
+    "protein": 32,
+    "carbs": 42,
+    "fats": 9,
+    "prepTime": 10,
+    "ingredients": ["Whole wheat tortilla", "Turkey slices", "Lettuce", "Tomato", "Hummus"],
+    "instructions": "Spread hummus on tortilla, add turkey and vegetables, roll tightly."
+  },
+  {
+    "id": 6,
+    "name": "Oatmeal Energy Bowl",
+    "category": "breakfast",
+    "calories": 340,
+    "protein": 12,
+    "carbs": 58,
+    "fats": 8,
+    "prepTime": 8,
+    "ingredients": ["Oats", "Banana", "Almonds", "Chia seeds", "Cinnamon"],
+    "instructions": "Cook oats, top with sliced banana, nuts, and chia seeds."
+  },
+  {
+    "id": 7,
+    "name": "Protein Pancakes",
+    "category": "breakfast",
+    "calories": 290,
+    "protein": 24,
+    "carbs": 32,
+    "fats": 7,
+    "prepTime": 15,
+    "ingredients": ["Eggs", "Protein powder", "Banana", "Oats", "Baking powder"],
+    "instructions": "Mix ingredients, cook on griddle until golden. Serve with berries."
+  },
+  {
+    "id": 8,
+    "name": "Quinoa Buddha Bowl",
+    "category": "lunch",
+    "calories": 420,
+    "protein": 18,
+    "carbs": 52,
+    "fats": 14,
+    "prepTime": 25,
+    "ingredients": ["Quinoa", "Chickpeas", "Kale", "Avocado", "Tahini dressing"],
+    "instructions": "Cook quinoa, roast chickpeas, assemble with greens and dressing."
+  }
+]

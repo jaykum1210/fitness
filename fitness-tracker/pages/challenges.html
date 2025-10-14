@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - Fitness Tracker</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">💪 FitTrack</a>
+                </div>
+                <nav class="main-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../calculators.html">Calculators</a>
+                    <a href="../workouts.html">Workouts</a>
+                    <a href="challenges.html" class="active">Challenges</a>
+                    <a href="../tracker.html">Tracker</a>
+                    <a href="../progress.html">Progress</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="../about.html">About</a>
+                    <a href="../login.html" class="btn-login">Login/Signup</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">🏆 Fitness Challenges</h1>
+            <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">
+                Push yourself to the next level with our structured fitness challenges. Join thousands of users transforming their lives!
+            </p>
+
+            <div id="message-container"></div>
+
+            <div class="cards-grid" id="challenges-container">
+                <!-- Challenges will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculators.html">Calculators</a>
+                    <a href="../workouts.html">Workouts</a>
+                    <a href="challenges.html">Challenges</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="nutrition.html">Nutrition</a>
+                    <a href="../tracker.html">Tracker</a>
+                    <a href="../progress.html">Progress</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="../about.html">About</a>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="YouTube">📺</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FitTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script>
+        // Sample challenges data
+        const challenges = [
+            {
+                id: 1,
+                name: "15-Day Fat Burn Challenge",
+                difficulty: "medium",
+                duration: 15,
+                description: "A high-intensity challenge designed to maximize calorie burn and boost metabolism with a mix of cardio and strength training.",
+                goal: "Burn 500+ calories per day and complete all workouts",
+                exercises: ["HIIT Cardio", "Bodyweight Circuits", "Tabata Training", "Core Workouts", "Active Recovery"],
+                participants: 2845,
+                completionRate: 68
+            },
+            {
+                id: 2,
+                name: "30-Day Muscle Gain Challenge",
+                difficulty: "hard",
+                duration: 30,
+                description: "Build lean muscle mass with this progressive strength training program that increases in intensity over four weeks.",
+                goal: "Increase strength by 15% and complete all resistance workouts",
+                exercises: ["Progressive Overload", "Compound Lifts", "Isolation Exercises", "Supersets", "Dropsets", "Recovery Protocols"],
+                participants: 1932,
+                completionRate: 54
+            },
+            {
+                id: 3,
+                name: "21-Day Flexibility Journey",
+                difficulty: "easy",
+                duration: 21,
+                description: "Improve your range of motion, reduce injury risk, and enhance recovery with daily stretching and mobility work.",
+                goal: "Increase flexibility in major muscle groups and practice daily",
+                exercises: ["Dynamic Stretching", "Static Stretching", "Yoga Flows", "Mobility Drills", "Foam Rolling"],
+                participants: 3567,
+                completionRate: 82
+            },
+            {
+                id: 4,
+                name: "7-Day Core Crusher",
+                difficulty: "medium",
+                duration: 7,
+                description: "Focus intensely on your core with this week-long challenge targeting all abdominal muscles and lower back.",
+                goal: "Complete all 7 workouts with proper form and increasing intensity",
+                exercises: ["Planks", "Russian Twists", "Leg Raises", "Mountain Climbers", "Hollow Holds", "Bird Dogs"],
+                participants: 5241,
+                completionRate: 76
+            },
+            {
+                id: 5,
+                name: "45-Day Total Transformation",
+                difficulty: "hard",
+                duration: 45,
+                description: "Our most comprehensive challenge combining strength, cardio, nutrition guidance, and recovery protocols for total body transformation.",
+                goal: "Complete 90% of workouts and follow nutrition guidelines",
+                exercises: ["Strength Training", "HIIT Cardio", "Active Recovery", "Mobility Work", "Nutrition Planning", "Progress Tracking"],
+                participants: 1245,
+                completionRate: 42
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            displayChallenges();
+            
+            // Check if user is logged in (from localStorage)
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            // Set up event delegation for join buttons
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('join-challenge-btn')) {
+                    const challengeId = e.target.getAttribute('data-id');
+                    joinChallenge(challengeId);
+                }
+            });
+        });
+        
+        function displayChallenges() {
+            const challengesContainer = document.getElementById('challenges-container');
+            challengesContainer.innerHTML = '';
+            
+            challenges.forEach(challenge => {
+                const challengeElement = document.createElement('div');
+                challengeElement.className = 'card challenge-detail-card';
+                
+                // Get badge emoji based on challenge ID
+                const badges = ['🔥', '💪', '🏆', '🎯', '⚡', '🌟'];
+                const badgeEmoji = badges[challenge.id % 6];
+                
+                // Create HTML for exercises
+                let exercisesHTML = '';
+                const displayExercises = challenge.exercises.slice(0, 3);
+                displayExercises.forEach(exercise => {
+                    exercisesHTML += `<span class="exercise-tag">${exercise}</span>`;
+                });
+                
+                if (challenge.exercises.length > 3) {
+                    exercisesHTML += `<span class="exercise-tag">+${challenge.exercises.length - 3} more</span>`;
+                }
+                
+                // Check if user is logged in
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const joinButtonHTML = isLoggedIn 
+                    ? `<button class="btn btn-success join-challenge-btn" data-id="${challenge.id}" style="width: 100%;">Join Challenge</button>`
+                    : `<a href="../login.html" class="btn btn-primary" style="width: 100%; display: inline-block; text-align: center; margin-top: 1rem;">Login to Join</a>`;
+                
+                challengeElement.innerHTML = `
+                    <div class="challenge-badge">
+                        ${badgeEmoji}
+                    </div>
+                    <h3>${challenge.name}</h3>
+                    <div class="challenge-meta">
+                        <span class="badge-pill badge-${challenge.difficulty}">
+                            ${challenge.difficulty.charAt(0).toUpperCase() + challenge.difficulty.slice(1)}
+                        </span>
+                        <span class="badge-pill">📅 ${challenge.duration} Days</span>
+                    </div>
+                    <p style="margin: 1rem 0;">${challenge.description}</p>
+                    
+                    <div class="challenge-goal">
+                        <strong>🎯 Goal:</strong> ${challenge.goal}
+                    </div>
+
+                    <div class="challenge-exercises">
+                        <strong>Includes:</strong>
+                        <div class="exercise-tags">
+                            ${exercisesHTML}
+                        </div>
+                    </div>
+
+                    <div class="challenge-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">${challenge.participants}</div>
+                            <div class="stat-label">Participants</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${challenge.completionRate}%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                    
+                    ${joinButtonHTML}
+                `;
+                
+                challengesContainer.appendChild(challengeElement);
+            });
+        }
+        
+        function joinChallenge(challengeId) {
+            // Show success message
+            const messageContainer = document.getElementById('message-container');
+            messageContainer.innerHTML = `
+                <div class="alert alert-success" style="max-width: 600px; margin: 0 auto 2rem;">
+                    Challenge joined successfully! Track your progress in the Tracker page.
+                </div>
+            `;
+            
+            // Scroll to message
+            messageContainer.scrollIntoView({ behavior: 'smooth' });
+            
+            // Store joined challenge in localStorage
+            const joinedChallenges = JSON.parse(localStorage.getItem('joinedChallenges') || '[]');
+            if (!joinedChallenges.includes(Number(challengeId))) {
+                joinedChallenges.push(Number(challengeId));
+                localStorage.setItem('joinedChallenges', JSON.stringify(joinedChallenges));
+            }
+            
+            // Update tracker data to include this challenge
+            updateTrackerWithChallenge(challengeId);
+        }
+        
+        function updateTrackerWithChallenge(challengeId) {
+            const challenge = challenges.find(c => c.id === Number(challengeId));
+            if (!challenge) return;
+            
+            // Add challenge to user's workout data
+            const workoutData = JSON.parse(localStorage.getItem('workoutData') || '[]');
+            
+            // Add first workout of the challenge
+            const today = new Date();
+            const workout = {
+                id: Date.now(),
+                date: today.toISOString().split('T')[0],
+                exercise: `${challenge.name} - Day 1`,
+                sets: '-',
+                reps: '-',
+                duration: 30,
+                calories: 250,
+                notes: `Started the ${challenge.name}!`
+            };
+            
+            workoutData.push(workout);
+            localStorage.setItem('workoutData', JSON.stringify(workoutData));
+        }
+    </script>
+</body>
+</html>

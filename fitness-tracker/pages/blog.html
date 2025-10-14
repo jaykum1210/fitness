@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Fitness Tracker</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">💪 FitTrack</a>
+                </div>
+                <nav class="main-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../calculators.html">Calculators</a>
+                    <a href="../workouts.html">Workouts</a>
+                    <a href="challenges.html">Challenges</a>
+                    <a href="../tracker.html">Tracker</a>
+                    <a href="../progress.html">Progress</a>
+                    <a href="blog.html" class="active">Blog</a>
+                    <a href="../about.html">About</a>
+                    <a href="../login.html" class="btn-login">Login/Signup</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">📚 Fitness Blog</h1>
+            <p style="text-align: center; color: var(--text-light); max-width: 700px; margin: 0 auto 3rem;">
+                Expert tips, science-backed advice, and motivation to help you reach your goals.
+            </p>
+
+            <div class="workout-tabs" style="margin-bottom: 2rem;">
+                <button class="tab-btn active" data-category="all">All</button>
+                <button class="tab-btn" data-category="Tips">Tips</button>
+                <button class="tab-btn" data-category="Nutrition">Nutrition</button>
+                <button class="tab-btn" data-category="Workouts">Workouts</button>
+                <button class="tab-btn" data-category="Motivation">Motivation</button>
+            </div>
+
+            <div class="cards-grid" id="recommendations" style="margin-bottom: 2rem; display: none;"></div>
+            <div class="blog-grid" id="blogGrid"></div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="../index.html">Home</a>
+                    <a href="../calculators.html">Calculators</a>
+                    <a href="../workouts.html">Workouts</a>
+                    <a href="challenges.html">Challenges</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="../tracker.html">Tracker</a>
+                    <a href="../progress.html">Progress</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="../about.html">About</a>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="YouTube">📺</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FitTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script>
+        let allPosts = [];
+        let currentCategory = 'all';
+
+        async function loadPosts() {
+            const res = await fetch('../data/blog.json');
+            const data = await res.json();
+            allPosts = data || [];
+        }
+
+        function getRecentActivityCategory() {
+            const workouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+            if (!workouts.length) return null;
+            // Heuristic: if last workout duration >= 30 -> Workouts; if calories < 200 -> Tips; else Motivation
+            const last = workouts[workouts.length - 1];
+            const dur = Number(last.duration) || 0;
+            const cal = Number(last.calories) || 0;
+            if (dur >= 30) return 'Workouts';
+            if (cal < 200) return 'Tips';
+            return 'Motivation';
+        }
+
+        function renderRecommendations() {
+            const recWrap = document.getElementById('recommendations');
+            const recCategory = getRecentActivityCategory();
+            if (!recCategory) {
+                recWrap.style.display = 'none';
+                recWrap.innerHTML = '';
+                return;
+            }
+            const recs = allPosts.filter(p => p.category === recCategory).slice(0, 3);
+            if (!recs.length) {
+                recWrap.style.display = 'none';
+                recWrap.innerHTML = '';
+                return;
+            }
+            recWrap.style.display = 'grid';
+            recWrap.innerHTML = recs.map(p => `
+                <div class="card">
+                    <div class="card-icon">🧭</div>
+                    <h3>${p.title}</h3>
+                    <p>${p.excerpt}</p>
+                    <button class="btn btn-primary" onclick='showPost(${JSON.stringify(p).replace(/"/g, "&quot;")})'>Read</button>
+                </div>
+            `).join('');
+        }
+
+        function renderPosts() {
+            const grid = document.getElementById('blogGrid');
+            const posts = currentCategory === 'all' ? allPosts : allPosts.filter(p => p.category === currentCategory);
+            grid.innerHTML = posts.map(p => `
+                <article class="blog-card">
+                    <div class="blog-header">
+                        <span class="blog-category">${p.category}</span>
+                        <span class="blog-date">${new Date(p.date).toLocaleDateString()}</span>
+                    </div>
+                    <h2>${p.title}</h2>
+                    <div class="blog-meta">
+                        <span>✍️ ${p.author}</span>
+                        <span>📖 ${p.readTime} min read</span>
+                    </div>
+                    <p class="blog-excerpt">${p.excerpt}</p>
+                    <button class="btn btn-primary" onclick='showPost(${JSON.stringify(p).replace(/"/g, "&quot;")})'>Read More</button>
+                </article>
+            `).join('');
+        }
+
+        function showPost(post) {
+            const html = `
+                <article class="blog-article">
+                    <span class="blog-category">${post.category}</span>
+                    <h1>${post.title}</h1>
+                    <div class="blog-meta" style="margin-bottom: 2rem;">
+                        <span>✍️ ${post.author}</span>
+                        <span>📅 ${new Date(post.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <span>📖 ${post.readTime} min read</span>
+                    </div>
+                    <div class="blog-content">${post.content}</div>
+                </article>
+            `;
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'flex';
+            modal.innerHTML = `
+                <div class="modal-content modal-large">
+                    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+                    <div>${html}</div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadPosts();
+            renderRecommendations();
+            renderPosts();
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-category');
+                    renderPosts();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

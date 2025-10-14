@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "15-Day Fat Burn Challenge",
+    "duration": 15,
+    "difficulty": "intermediate",
+    "description": "High-intensity challenge designed to kickstart your metabolism and burn fat fast.",
+    "goal": "Burn 5000+ calories in 15 days",
+    "exercises": ["Burpees", "Mountain Climbers", "Jump Squats", "High Knees", "Plank Jacks"],
+    "participants": 1247,
+    "completionRate": 68
+  },
+  {
+    "id": 2,
+    "name": "30-Day Muscle Gain",
+    "duration": 30,
+    "difficulty": "advanced",
+    "description": "Build strength and muscle mass with progressive overload training.",
+    "goal": "Gain 2-4 lbs of muscle in 30 days",
+    "exercises": ["Bench Press", "Deadlifts", "Squats", "Pull-ups", "Shoulder Press"],
+    "participants": 892,
+    "completionRate": 54
+  },
+  {
+    "id": 3,
+    "name": "6-Month Transformation",
+    "duration": 180,
+    "difficulty": "advanced",
+    "description": "Complete body transformation with structured workout and nutrition guidance.",
+    "goal": "Total body transformation",
+    "exercises": ["Full Body Workout", "Cardio", "Strength Training", "Flexibility"],
+    "participants": 523,
+    "completionRate": 41
+  },
+  {
+    "id": 4,
+    "name": "7-Day Core Crusher",
+    "duration": 7,
+    "difficulty": "beginner",
+    "description": "One week intensive focus on core strength and abs definition.",
+    "goal": "Stronger core and visible abs definition",
+    "exercises": ["Plank", "Russian Twists", "Bicycle Crunches", "Leg Raises", "Mountain Climbers"],
+    "participants": 2103,
+    "completionRate": 79
+  },
+  {
+    "id": 5,
+    "name": "21-Day Cardio Blast",
+    "duration": 21,
+    "difficulty": "intermediate",
+    "description": "Improve cardiovascular endurance with daily cardio sessions.",
+    "goal": "Run 5K without stopping",
+    "exercises": ["Running", "Jump Rope", "Burpees", "High Knees", "Boxing"],
+    "participants": 1654,
+    "completionRate": 62
+  },
+  {
+    "id": 6,
+    "name": "Flexibility & Mobility 14-Day",
+    "duration": 14,
+    "difficulty": "beginner",
+    "description": "Improve flexibility, reduce injury risk, and enhance overall mobility.",
+    "goal": "Touch toes & improve range of motion",
+    "exercises": ["Yoga Flow", "Dynamic Stretching", "Foam Rolling", "Hip Openers", "Shoulder Mobility"],
+    "participants": 1876,
+    "completionRate": 73
+  }
+]

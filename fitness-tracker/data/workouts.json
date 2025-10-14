@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Push-ups",
+    "category": "beginner",
+    "bodyPart": "chest",
+    "sets": 3,
+    "reps": 10,
+    "description": "Classic upper body exercise"
+  },
+  {
+    "id": 2,
+    "name": "Squats",
+    "category": "beginner",
+    "bodyPart": "legs",
+    "sets": 3,
+    "reps": 15,
+    "description": "Build strong legs and glutes"
+  },
+  {
+    "id": 3,
+    "name": "Plank",
+    "category": "beginner",
+    "bodyPart": "core",
+    "sets": 3,
+    "reps": "30s",
+    "description": "Core stability exercise"
+  },
+  {
+    "id": 4,
+    "name": "Bench Press",
+    "category": "intermediate",
+    "bodyPart": "chest",
+    "sets": 4,
+    "reps": 8,
+    "description": "Build chest strength"
+  },
+  {
+    "id": 5,
+    "name": "Deadlifts",
+    "category": "advanced",
+    "bodyPart": "back",
+    "sets": 4,
+    "reps": 6,
+    "description": "Full body power exercise"
+  },
+  {
+    "id": 6,
+    "name": "Pull-ups",
+    "category": "intermediate",
+    "bodyPart": "back",
+    "sets": 3,
+    "reps": 8,
+    "description": "Upper body pull strength"
+  },
+  {
+    "id": 7,
+    "name": "Lunges",
+    "category": "beginner",
+    "bodyPart": "legs",
+    "sets": 3,
+    "reps": 12,
+    "description": "Single leg strength"
+  },
+  {
+    "id": 8,
+    "name": "Shoulder Press",
+    "category": "intermediate",
+    "bodyPart": "shoulders",
+    "sets": 3,
+    "reps": 10,
+    "description": "Build shoulder strength"
+  },
+  {
+    "id": 9,
+    "name": "Burpees",
+    "category": "advanced",
+    "bodyPart": "full-body",
+    "sets": 3,
+    "reps": 15,
+    "description": "High intensity full body"
+  },
+  {
+    "id": 10,
+    "name": "Russian Twists",
+    "category": "intermediate",
+    "bodyPart": "core",
+    "sets": 3,
+    "reps": 20,
+    "description": "Oblique strengthening"
+  }
+]

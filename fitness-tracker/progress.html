@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress - Fitness Tracker</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">💪 FitTrack</a>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="calculators.html">Calculators</a>
+                    <a href="workouts.html">Workouts</a>
+                    <a href="pages/challenges.html">Challenges</a>
+                    <a href="tracker.html">Tracker</a>
+                    <a href="progress.html" class="active">Progress</a>
+                    <a href="pages/blog.html">Blog</a>
+                    <a href="about.html">About</a>
+                    <a href="login.html" class="btn-login">Login/Signup</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="section-title">Your Progress</h1>
+
+            <div class="cards-grid" style="margin-bottom: 3rem;" id="totalsGrid">
+                <div class="card stats-card">
+                    <div class="stat-icon">💪</div>
+                    <h3 id="totalWorkouts">0</h3>
+                    <p>Total Workouts</p>
+                </div>
+                <div class="card stats-card">
+                    <div class="stat-icon">🔥</div>
+                    <h3 id="totalCalories">0</h3>
+                    <p>Calories Burned</p>
+                </div>
+                <div class="card stats-card">
+                    <div class="stat-icon">⏱️</div>
+                    <h3 id="totalDuration">0 min</h3>
+                    <p>Total Duration</p>
+                </div>
+                <div class="card stats-card">
+                    <div class="stat-icon">📅</div>
+                    <h3 id="activeDays">0</h3>
+                    <p>Active Days (last 7)</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2 style="margin-bottom: 1.5rem;">Last 7 Days Calories</h2>
+                <div id="calorieBars" style="display: flex; gap: 1rem; align-items: flex-end; justify-content: space-around; padding: 2rem; background: var(--bg-gray); border-radius: 8px; min-height: 300px;"></div>
+            </div>
+
+            <div class="chart-container">
+                <h2 style="margin-bottom: 1.5rem;">Workout Calendar (Last 7 Days)</h2>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+
+            <div class="chart-container">
+                <h2 style="margin-bottom: 1.5rem;">🏆 Achievements</h2>
+                <div class="badge-grid" id="badgeGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="calculators.html">Calculators</a>
+                    <a href="workouts.html">Workouts</a>
+                    <a href="pages/challenges.html">Challenges</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="tracker.html">Tracker</a>
+                    <a href="progress.html">Progress</a>
+                    <a href="pages/blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="about.html">About</a>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="YouTube">📺</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FitTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        function getLast7Dates() {
+            const dates = [];
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                dates.push(d.toISOString().split('T')[0]);
+            }
+            return dates;
+        }
+
+        function loadWorkouts() {
+            // Expected schema stored by tracker.html sample or app: { date, exercise, sets, reps, duration, calories }
+            const workouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+            return workouts;
+        }
+
+        function computeStats(workouts) {
+            const last7 = getLast7Dates();
+            const totals = {
+                totalWorkouts: workouts.length,
+                totalCalories: 0,
+                totalDuration: 0,
+                last7: {},
+            };
+            last7.forEach(d => totals.last7[d] = { calories: 0, active: false });
+
+            const uniqueActiveDates = new Set();
+
+            workouts.forEach(w => {
+                const cal = Number(w.calories) || 0;
+                const dur = Number(w.duration) || 0;
+                totals.totalCalories += cal;
+                totals.totalDuration += dur;
+                if (w.date && totals.last7[w.date] !== undefined) {
+                    totals.last7[w.date].calories += cal;
+                    totals.last7[w.date].active = true;
+                    uniqueActiveDates.add(w.date);
+                }
+            });
+
+            totals.activeDays = uniqueActiveDates.size;
+            return totals;
+        }
+
+        function renderTotals(t) {
+            document.getElementById('totalWorkouts').textContent = String(t.totalWorkouts);
+            document.getElementById('totalCalories').textContent = String(t.totalCalories);
+            document.getElementById('totalDuration').textContent = String(t.totalDuration) + ' min';
+            document.getElementById('activeDays').textContent = String(t.activeDays);
+        }
+
+        function renderBars(last7) {
+            const container = document.getElementById('calorieBars');
+            container.innerHTML = '';
+            const maxCal = Math.max(50, ...Object.values(last7).map(d => d.calories));
+            Object.entries(last7).forEach(([date, data]) => {
+                const height = Math.max(20, Math.round((data.calories / maxCal) * 250));
+                const col = document.createElement('div');
+                col.style.textAlign = 'center';
+                col.style.flex = '1';
+                col.innerHTML = `
+                    <div style="background: var(--primary); border-radius: 8px 8px 0 0; height: ${height}px; margin-bottom: 0.5rem;"></div>
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">${data.calories}</div>
+                    <div style="font-size: 0.75rem; color: var(--text-light);">${new Date(date).toLocaleDateString(undefined, { weekday: 'short' })}</div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
+        function renderCalendar(last7) {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            Object.entries(last7).forEach(([date, data]) => {
+                const cell = document.createElement('div');
+                cell.className = 'calendar-day' + (data.active ? ' active' : '');
+                cell.title = date;
+                cell.textContent = new Date(date).getDate();
+                grid.appendChild(cell);
+            });
+        }
+
+        function renderBadges(t) {
+            const badges = [
+                { name: 'First Workout', icon: '🎯', earned: t.totalWorkouts >= 1 },
+                { name: '10 Workouts', icon: '💪', earned: t.totalWorkouts >= 10 },
+                { name: '500 Calories', icon: '🔥', earned: t.totalCalories >= 500 },
+                { name: '1000 Calories', icon: '🔥', earned: t.totalCalories >= 1000 },
+                { name: '7 Day Streak', icon: '📅', earned: t.activeDays >= 7 },
+                { name: '30 Day Streak', icon: '🏆', earned: t.activeDays >= 30 },
+            ];
+            const grid = document.getElementById('badgeGrid');
+            grid.innerHTML = '';
+            badges.forEach(b => {
+                const div = document.createElement('div');
+                div.className = 'badge' + (b.earned ? ' earned' : '');
+                div.innerHTML = `
+                    <div class="badge-icon">${b.icon}</div>
+                    <div style="font-weight: 600;">${b.name}</div>
+                    ${b.earned ? '' : '<div style="font-size: 0.75rem; margin-top: 0.25rem; opacity: 0.7;">Locked</div>'}
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const workouts = loadWorkouts();
+            const totals = computeStats(workouts);
+            renderTotals(totals);
+            renderBars(totals.last7);
+            renderCalendar(totals.last7);
+            renderBadges(totals);
+        });
+    </script>
+</body>
+</html>

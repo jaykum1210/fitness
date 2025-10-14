@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculators - Fitness Tracker</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">💪 FitTrack</a>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="calculators.html" class="active">Calculators</a>
+                    <a href="workouts.html">Workouts</a>
+                    <a href="pages/challenges.html">Challenges</a>
+                    <a href="tracker.html">Tracker</a>
+                    <a href="progress.html">Progress</a>
+                    <a href="pages/blog.html">Blog</a>
+                    <a href="about.html">About</a>
+                    <a href="login.html" class="btn-login">Login/Signup</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="bmi">
+        <div class="container">
+            <h1 class="page-title">Fitness Calculators</h1>
+            <div class="calculator-box">
+                <h2>BMI Calculator</h2>
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="Enter weight">
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" placeholder="Enter height">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+                    <div id="bmiResult" class="result-box"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="calories">
+        <div class="container">
+            <div class="calculator-box">
+                <h2>Calories Calculator</h2>
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" placeholder="Enter age">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="weightCal">Weight (kg)</label>
+                        <input type="number" id="weightCal" placeholder="Enter weight">
+                    </div>
+                    <div class="form-group">
+                        <label for="heightCal">Height (cm)</label>
+                        <input type="number" id="heightCal" placeholder="Enter height">
+                    </div>
+                    <div class="form-group">
+                        <label for="activity">Activity Level</label>
+                        <select id="activity">
+                            <option value="1.2">Sedentary</option>
+                            <option value="1.375">Lightly Active</option>
+                            <option value="1.55">Moderately Active</option>
+                            <option value="1.725">Very Active</option>
+                            <option value="1.9">Extra Active</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateCalories()">Calculate Calories</button>
+                    <div id="caloriesResult" class="result-box"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="water">
+        <div class="container">
+            <div class="calculator-box">
+                <h2>Water Intake Calculator</h2>
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="weightWater">Weight (kg)</label>
+                        <input type="number" id="weightWater" placeholder="Enter weight">
+                    </div>
+                    <div class="form-group">
+                        <label for="activityWater">Activity Level</label>
+                        <select id="activityWater">
+                            <option value="30">Low Activity</option>
+                            <option value="35">Moderate Activity</option>
+                            <option value="40">High Activity</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateWater()">Calculate Water</button>
+                    <div id="waterResult" class="result-box"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="calculators.html">Calculators</a>
+                    <a href="workouts.html">Workouts</a>
+                    <a href="pages/challenges.html">Challenges</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="pages/nutrition.html">Nutrition</a>
+                    <a href="tracker.html">Tracker</a>
+                    <a href="progress.html">Progress</a>
+                    <a href="pages/blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="pages/community.html">Community</a>
+                    <a href="about.html">About</a>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="YouTube">📺</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FitTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        function calculateBMI() {
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value / 100; // convert to meters
+            
+            if (weight && height) {
+                const bmi = (weight / (height * height)).toFixed(1);
+                let category = '';
+                
+                if (bmi < 18.5) category = 'Underweight';
+                else if (bmi < 25) category = 'Normal weight';
+                else if (bmi < 30) category = 'Overweight';
+                else category = 'Obese';
+                
+                document.getElementById('bmiResult').innerHTML = `Your BMI: <strong>${bmi}</strong> (${category})`;
+            }
+        }
+        
+        function calculateCalories() {
+            const weight = document.getElementById('weightCal').value;
+            const height = document.getElementById('heightCal').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const activity = document.getElementById('activity').value;
+            
+            if (weight && height && age) {
+                let bmr = 0;
+                if (gender === 'male') {
+                    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+                } else {
+                    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+                }
+                
+                const calories = Math.round(bmr * activity);
+                document.getElementById('caloriesResult').innerHTML = `Your daily calorie needs: <strong>${calories} calories</strong>`;
+            }
+        }
+        
+        function calculateWater() {
+            const weight = document.getElementById('weightWater').value;
+            const activity = document.getElementById('activityWater').value;
+            
+            if (weight) {
+                const waterMl = Math.round(weight * activity);
+                const waterL = (waterMl / 1000).toFixed(1);
+                document.getElementById('waterResult').innerHTML = `Your daily water needs: <strong>${waterL} liters</strong> (${waterMl} ml)`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workouts - Fitness Tracker</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">💪 FitTrack</a>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="calculators.html">Calculators</a>
+                    <a href="workouts.html" class="active">Workouts</a>
+                    <a href="pages/challenges.html">Challenges</a>
+                    <a href="tracker.html">Tracker</a>
+                    <a href="progress.html">Progress</a>
+                    <a href="pages/blog.html">Blog</a>
+                    <a href="about.html">About</a>
+                    <a href="login.html" class="btn-login">Login/Signup</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="section workout-page">
+        <div class="container">
+            <h1 class="page-title">Workout Library</h1>
+
+            <div class="workout-tabs">
+                <button class="tab-btn active" data-filter="all">All</button>
+                <button class="tab-btn" data-filter="strength">Strength</button>
+                <button class="tab-btn" data-filter="cardio">Cardio</button>
+                <button class="tab-btn" data-filter="flexibility">Flexibility</button>
+            </div>
+            
+            <div class="workout-grid">
+                <div class="card workout-card" data-category="strength">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" alt="Full Body Workout">
+                    </div>
+                    <div class="workout-details">
+                        <h3>Full Body Workout</h3>
+                        <p>A complete workout targeting all major muscle groups</p>
+                        <div class="workout-meta">
+                            <span>45 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">Squats</span>
+                            <span class="exercise-tag">Push-ups</span>
+                            <span class="exercise-tag">Rows</span>
+                            <span class="exercise-tag">Plank</span>
+                        </div>
+                        <a href="pages/workouts/full-body.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                    </div>
+                </div>
+                
+                <div class="card workout-card" data-category="strength">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=1200&auto=format&fit=crop" alt="Upper Body Strength">
+                    </div>
+                    <div class="workout-details">
+                        <h3>Upper Body Strength</h3>
+                        <p>Focus on chest, back, shoulders and arms</p>
+                        <div class="workout-meta">
+                            <span>30 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">Bench Press</span>
+                            <span class="exercise-tag">Pull-ups</span>
+                            <span class="exercise-tag">Shoulder Press</span>
+                            <span class="exercise-tag">Curls</span>
+                        </div>
+                        <a href="pages/workouts/upper-body.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                    </div>
+                </div>
+                
+                <div class="card workout-card" data-category="strength">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop" alt="Lower Body Power">
+                    </div>
+                    <div class="workout-details">
+                        <h3>Lower Body Power</h3>
+                        <p>Build strength in legs, glutes and core</p>
+                        <div class="workout-meta">
+                            <span>40 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">Deadlifts</span>
+                            <span class="exercise-tag">Lunges</span>
+                            <span class="exercise-tag">Hip Thrusts</span>
+                            <span class="exercise-tag">Calf Raises</span>
+                        </div>
+                        <a href="pages/workouts/lower-body.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                    </div>
+                </div>
+                
+                <div class="card workout-card" data-category="cardio">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1526406915894-6c4aa1b54f09?q=80&w=1200&auto=format&fit=crop" alt="HIIT Cardio">
+                    </div>
+                    <div class="workout-details">
+                        <h3>HIIT Cardio</h3>
+                        <p>High intensity intervals for maximum calorie burn</p>
+                        <div class="workout-meta">
+                            <span>25 min</span>
+                            <span>Advanced</span>
+                        </div>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">Sprints</span>
+                            <span class="exercise-tag">Burpees</span>
+                            <span class="exercise-tag">Mountain Climbers</span>
+                            <span class="exercise-tag">Jump Squats</span>
+                        </div>
+                        <a href="pages/workouts/hiit.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                    </div>
+                </div>
+                
+                <div class="card workout-card" data-category="flexibility">
+                    <div class="workout-image">
+                        <img src="https://images.unsplash.com/photo-1571019613914-85f342c55f38?q=80&w=1200&auto=format&fit=crop" alt="Yoga Flow">
+                    </div>
+                    <div class="workout-details">
+                        <h3>Yoga Flow</h3>
+                        <p>Improve flexibility and mindfulness</p>
+                        <div class="workout-meta">
+                            <span>30 min</span>
+                            <span>All Levels</span>
+                        </div>
+                        <div class="exercise-tags">
+                            <span class="exercise-tag">Sun Salutation</span>
+                            <span class="exercise-tag">Warrior II</span>
+                            <span class="exercise-tag">Downward Dog</span>
+                            <span class="exercise-tag">Pigeon Pose</span>
+                        </div>
+                        <a href="pages/workouts/yoga-flow.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="calculators.html">Calculators</a>
+                    <a href="workouts.html">Workouts</a>
+                    <a href="pages/challenges.html">Challenges</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="tracker.html">Tracker</a>
+                    <a href="progress.html">Progress</a>
+                    <a href="pages/blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="about.html">About</a>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="YouTube">📺</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FitTrack. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Tabs filtering
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filter = button.getAttribute('data-filter');
+                document.querySelectorAll('.workout-card').forEach(card => {
+                    const cat = card.getAttribute('data-category');
+                    card.style.display = (filter === 'all' || cat === filter) ? 'flex' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

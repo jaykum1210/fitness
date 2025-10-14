@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "10 Beginner Mistakes to Avoid at the Gym",
+    "author": "Jay",
+    "date": "2025-10-01",
+    "category": "Tips",
+    "readTime": 5,
+    "excerpt": "Starting your fitness journey? Avoid these common mistakes that could slow your progress or lead to injury.",
+    "content": "Many beginners make the same mistakes when starting at the gym. Here are the top 10 to avoid: 1) Skipping warm-up, 2) Using improper form, 3) Not tracking progress..."
+  },
+  {
+    "id": 2,
+    "title": "The Science Behind Muscle Growth",
+    "author": "Jay",
+    "date": "2025-09-28",
+    "category": "Science",
+    "readTime": 8,
+    "excerpt": "Understanding how muscles grow will help you train smarter and see better results.",
+    "content": "Muscle growth, or hypertrophy, occurs when muscle fibers are damaged through resistance training. The body repairs these fibers, making them larger and stronger..."
+  },
+  {
+    "id": 3,
+    "title": "Nutrition Timing: When to Eat for Best Results",
+    "author": "Jay",
+    "date": "2025-09-25",
+    "category": "Nutrition",
+    "readTime": 6,
+    "excerpt": "Learn when to eat your meals for optimal performance and recovery.",
+    "content": "Meal timing can significantly impact your fitness results. Pre-workout nutrition should focus on easily digestible carbs and protein 1-2 hours before training..."
+  },
+  {
+    "id": 4,
+    "title": "Home Workouts: No Equipment Needed",
+    "author": "Jay",
+    "date": "2025-09-20",
+    "category": "Workouts",
+    "readTime": 7,
+    "excerpt": "Build muscle and burn fat with these effective bodyweight exercises you can do anywhere.",
+    "content": "You don't need a gym membership to get fit. These bodyweight exercises provide a full-body workout: Push-ups, Squats, Lunges, Planks, Burpees..."
+  },
+  {
+    "id": 5,
+    "title": "Recovery: The Missing Link in Your Training",
+    "author": "Jay",
+    "date": "2025-09-15",
+    "category": "Recovery",
+    "readTime": 6,
+    "excerpt": "Why rest days are just as important as training days for reaching your fitness goals.",
+    "content": "Many athletes focus solely on training intensity and forget about recovery. However, muscles grow during rest, not during workouts..."
+  },
+  {
+    "id": 6,
+    "title": "Setting Realistic Fitness Goals",
+    "author": "Jay",
+    "date": "2025-09-10",
+    "category": "Motivation",
+    "readTime": 5,
+    "excerpt": "Learn how to set SMART goals that keep you motivated and on track.",
+    "content": "Setting the right goals is crucial for long-term success. Use the SMART framework: Specific, Measurable, Achievable, Relevant, Time-bound..."
+  }
+]

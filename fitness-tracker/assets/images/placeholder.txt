@@ -1,0 +1,26 @@
+IMAGE PLACEHOLDERS
+
+For production, replace these with actual images:
+
+Hero Images (1920x600):
+- hero-fitness.jpg - Main hero image with workout theme
+- hero-challenges.jpg - Challenge hero image
+- hero-nutrition.jpg - Healthy food image
+
+Workout Images (400x300):
+- workout-pushups.jpg
+- workout-squats.jpg
+- workout-deadlifts.jpg
+- workout-plank.jpg
+- workout-running.jpg
+
+Icons (100x100):
+- icon-bmi.svg
+- icon-calories.svg
+- icon-water.svg
+- icon-workout.svg
+- icon-progress.svg
+
+For now, the site uses emoji icons which work great!
+To add real images, simply place image files in this directory
+and update the <img> tags in the PHP files.

@@ -1,0 +1,132 @@
+<?php 
+$pageTitle = 'Home - Fitness Tracker';
+include 'includes/header.php'; 
+?>
+
+<section class="hero">
+    <div class="container">
+        <h1 class="gradient-text">Track Your Fitness. Transform Your Life.</h1>
+        <p>Build sustainable habits with smart tracking, curated workouts, and everyday motivation.</p>
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1600&auto=format&fit=crop" alt="Athlete training in a modern gym" class="hero-image" />
+        <div class="hero-buttons">
+            <a href="tracker.php" class="btn btn-primary">Start Tracking</a>
+            <a href="workouts.php" class="btn btn-secondary">Explore Workouts</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Stay Inspired Every Day</h2>
+        <div class="quote-card">
+            <p id="motivationalQuote">"The only bad workout is the one that didn't happen."</p>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Quick Calculators</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>BMI Calculator</h3>
+                <p>Check your Body Mass Index</p>
+                <a href="calculators.php#bmi" class="btn btn-primary">Calculate</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <h3>Calories Calculator</h3>
+                <p>Find your daily calorie needs</p>
+                <a href="calculators.php#calories" class="btn btn-primary">Calculate</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">💧</div>
+                <h3>Water Intake</h3>
+                <p>Calculate daily water requirement</p>
+                <a href="calculators.php#water" class="btn btn-primary">Calculate</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Pre-Built Workouts</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">💪</div>
+                <h3>Full Body</h3>
+                <p>Complete workout for all muscle groups</p>
+                <a href="workouts.php" class="btn btn-primary">View Workouts</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🦵</div>
+                <h3>Legs Day</h3>
+                <p>Build powerful lower body strength</p>
+                <a href="workouts.php" class="btn btn-primary">View Workouts</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">💪</div>
+                <h3>Upper Body</h3>
+                <p>Chest, back, shoulders & arms</p>
+                <a href="workouts.php" class="btn btn-primary">View Workouts</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Abs & Core</h3>
+                <p>Strengthen your core muscles</p>
+                <a href="workouts.php" class="btn btn-primary">View Workouts</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">📚 Latest from Our Blog</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>10 Beginner Mistakes to Avoid</h3>
+                <p>Learn the most common gym mistakes and how to prevent them from slowing your progress.</p>
+                <a href="pages/blog.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Read Article</a>
+            </div>
+            <div class="card">
+                <h3>The Science Behind Muscle Growth</h3>
+                <p>Understanding hypertrophy will help you train smarter and see better results.</p>
+                <a href="pages/blog.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Read Article</a>
+            </div>
+            <div class="card">
+                <h3>Nutrition Timing Tips</h3>
+                <p>When to eat for optimal performance and recovery throughout your day.</p>
+                <a href="pages/blog.php" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Read Article</a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="pages/blog.php" class="btn btn-primary">Visit Blog</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">⭐ Success Stories</h2>
+        <p style="color: var(--text-light); max-width: 700px; margin: 0 auto 2rem;">
+            Real people. Real results. Get inspired by transformations from our community of everyday athletes.
+        </p>
+        <div class="testimonial-section">
+            <p class="testimonial-quote">“I’ve never felt stronger or more consistent. The tracker made it simple.”</p>
+            <p class="testimonial-author">— Alex, lost 18 lbs in 12 weeks</p>
+        </div>
+    </div>
+</section>
+
+<section class="section surprise-section">
+    <div class="container">
+        <h2 class="section-title">🎉 Surprise Me!</h2>
+        <button onclick="surpriseMe()" class="btn btn-surprise">Give Me Something Random!</button>
+        <div id="surpriseResult" class="surprise-result"></div>
+    </div>
+</section>
+
+<?php include 'includes/footer.php'; ?>
