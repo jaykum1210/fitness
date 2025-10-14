@@ -285,3 +285,7 @@ INSERT INTO blog_posts (title, slug, excerpt, content, category, tags, is_publis
 ('10 Beginner Mistakes to Avoid', '10-beginner-mistakes-to-avoid', 'Learn the most common gym mistakes and how to prevent them from slowing your progress.', '<p>Starting your fitness journey can be overwhelming, but avoiding these common mistakes will set you up for success...</p>', 'Fitness Tips', '["beginner", "mistakes", "tips"]', TRUE, NOW()),
 ('The Science Behind Muscle Growth', 'science-behind-muscle-growth', 'Understanding hypertrophy will help you train smarter and see better results.', '<p>Muscle growth, or hypertrophy, is a complex process that involves multiple factors...</p>', 'Science', '["muscle growth", "hypertrophy", "science"]', TRUE, NOW()),
 ('Nutrition Timing Tips', 'nutrition-timing-tips', 'When to eat for optimal performance and recovery throughout your day.', '<p>Timing your nutrition properly can make a significant difference in your performance and recovery...</p>', 'Nutrition', '["nutrition", "timing", "performance"]', TRUE, NOW());
+
+-- Insert demo user for testing
+INSERT INTO users (username, email, password_hash, first_name, last_name, is_active, created_at) VALUES
+('demo_user', 'demo@fittrack.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Demo', 'User', TRUE, NOW());

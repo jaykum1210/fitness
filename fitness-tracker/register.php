@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'Register - Fitness Tracker';
+$pageTitle = 'Sign Up - Fitness Tracker';
 include 'includes/header.php';
 
 // Redirect if already logged in
@@ -23,12 +23,12 @@ $csrfToken = generateCSRFToken();
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" id="first_name" name="first_name">
+                            <label for="first_name">First Name *</label>
+                            <input type="text" id="first_name" name="first_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" id="last_name" name="last_name">
+                            <label for="last_name">Last Name *</label>
+                            <input type="text" id="last_name" name="last_name" required>
                         </div>
                     </div>
                     

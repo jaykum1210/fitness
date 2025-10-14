@@ -5,6 +5,7 @@
  */
 
 require_once '../includes/config.php';
+require_once '../includes/auth.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -37,6 +38,12 @@ try {
             break;
         case 'update_profile':
             handleProfileUpdate();
+            break;
+        case 'reset_password':
+            handlePasswordReset();
+            break;
+        case 'clean_sessions':
+            handleCleanSessions();
             break;
         default:
             handleError('Invalid action', 400);
@@ -94,36 +101,39 @@ function handleRegistration() {
         $errors[] = 'Passwords do not match';
     }
     
+    if (empty($firstName)) {
+        $errors[] = 'First name is required';
+    }
+    
+    if (empty($lastName)) {
+        $errors[] = 'Last name is required';
+    }
+    
     if (!empty($errors)) {
         http_response_code(400);
         echo json_encode(['success' => false, 'errors' => $errors]);
         exit();
     }
     
-    // Check if user already exists
-    $existingUser = fetchOne("SELECT id FROM users WHERE username = ? OR email = ?", [$username, $email]);
-    if ($existingUser) {
-        handleError('Username or email already exists', 409);
+    try {
+        // Register user using auth functions
+        $result = registerUser($username, $email, $password, $firstName, $lastName);
+        
+        // Create session
+        $sessionResult = createUserSession($result['user_id']);
+        
+        sendSuccess([
+            'user_id' => $result['user_id'],
+            'username' => $username,
+            'email' => $email,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'session_token' => $sessionResult
+        ], 'Registration successful');
+        
+    } catch (Exception $e) {
+        handleError($e->getMessage(), 400);
     }
-    
-    // Create user
-    $passwordHash = hashPassword($password);
-    $sql = "INSERT INTO users (username, email, password_hash, first_name, last_name, created_at) 
-            VALUES (?, ?, ?, ?, ?, NOW())";
-    
-    executeQuery($sql, [$username, $email, $passwordHash, $firstName, $lastName]);
-    $userId = getLastInsertId();
-    
-    // Log in the user
-    loginUser($userId);
-    
-    sendSuccess([
-        'user_id' => $userId,
-        'username' => $username,
-        'email' => $email,
-        'first_name' => $firstName,
-        'last_name' => $lastName
-    ], 'Registration successful');
 }
 
 /**
@@ -148,69 +158,55 @@ function handleLogin() {
         handleError('Username and password are required', 400);
     }
     
-    // Get user from database
-    $user = fetchOne("SELECT * FROM users WHERE (username = ? OR email = ?) AND is_active = 1", [$username, $username]);
-    
-    if (!$user || !verifyPassword($password, $user['password_hash'])) {
-        handleError('Invalid username or password', 401);
+    try {
+        // Authenticate user using auth functions
+        $result = authenticateUser($username, $password, $remember);
+        
+        // Remove sensitive data
+        unset($result['user']['password_hash']);
+        
+        sendSuccess($result['user'], 'Login successful');
+        
+    } catch (Exception $e) {
+        handleError($e->getMessage(), 401);
     }
-    
-    // Log in the user
-    loginUser($user['id']);
-    
-    // Set remember me cookie if requested
-    if ($remember) {
-        $token = bin2hex(random_bytes(32));
-        setcookie('remember_token', $token, time() + (30 * 24 * 60 * 60), '/', '', false, true);
-        // Store token in database (you'd need a remember_tokens table)
-    }
-    
-    // Remove sensitive data
-    unset($user['password_hash']);
-    
-    sendSuccess($user, 'Login successful');
 }
 
 /**
  * Handle user logout
  */
 function handleLogout() {
-    logoutUser();
+    $sessionToken = $_COOKIE['session_token'] ?? null;
     
-    // Clear remember me cookie
-    if (isset($_COOKIE['remember_token'])) {
-        setcookie('remember_token', '', time() - 3600, '/', '', false, true);
+    if (logoutUser($sessionToken)) {
+        sendSuccess(null, 'Logout successful');
+    } else {
+        handleError('Logout failed', 500);
     }
-    
-    sendSuccess(null, 'Logout successful');
 }
 
 /**
  * Check authentication status
  */
 function handleAuthCheck() {
-    if (isLoggedIn()) {
-        $user = getLoggedInUser();
-        if ($user) {
-            unset($user['password_hash']);
-            sendSuccess($user, 'User is authenticated');
-        }
-    }
+    $user = getCurrentUser();
     
-    sendSuccess(null, 'User is not authenticated');
+    if ($user) {
+        unset($user['password_hash']);
+        sendSuccess($user, 'User is authenticated');
+    } else {
+        sendSuccess(null, 'User is not authenticated');
+    }
 }
 
 /**
  * Get user profile
  */
 function handleProfile() {
-    if (!isLoggedIn()) {
-        handleError('Authentication required', 401);
-    }
+    $user = getCurrentUser();
     
-    $user = getLoggedInUser();
     if (!$user) {
-        handleError('User not found', 404);
+        handleError('Authentication required', 401);
     }
     
     unset($user['password_hash']);
@@ -221,7 +217,9 @@ function handleProfile() {
  * Update user profile
  */
 function handleProfileUpdate() {
-    if (!isLoggedIn()) {
+    $user = getCurrentUser();
+    
+    if (!$user) {
         handleError('Authentication required', 401);
     }
     
@@ -235,7 +233,7 @@ function handleProfileUpdate() {
         handleError('Invalid CSRF token', 403);
     }
     
-    $userId = $_SESSION['user_id'];
+    $userId = $user['user_id'];
     $firstName = sanitizeInput($_POST['first_name'] ?? '');
     $lastName = sanitizeInput($_POST['last_name'] ?? '');
     $email = sanitizeInput($_POST['email'] ?? '');
@@ -318,10 +316,48 @@ function handleProfileUpdate() {
     $sql = "UPDATE users SET " . implode(', ', $fields) . " WHERE id = ?";
     executeQuery($sql, $params);
     
-    // Get updated user
-    $user = getLoggedInUser();
-    unset($user['password_hash']);
+    // Log activity
+    logUserActivity($userId, 'profile_update');
     
-    sendSuccess($user, 'Profile updated successfully');
+    // Get updated user
+    $updatedUser = fetchOne("SELECT * FROM users WHERE id = ?", [$userId]);
+    unset($updatedUser['password_hash']);
+    
+    sendSuccess($updatedUser, 'Profile updated successfully');
+}
+
+/**
+ * Handle password reset request
+ */
+function handlePasswordReset() {
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        handleError('Method not allowed', 405);
+    }
+    
+    $email = sanitizeInput($_POST['email'] ?? '');
+    
+    if (empty($email) || !validateEmail($email)) {
+        handleError('Valid email is required', 400);
+    }
+    
+    try {
+        $token = generatePasswordResetToken($email);
+        // In a real application, you would send an email with the reset link
+        sendSuccess(['token' => $token], 'Password reset token generated');
+        
+    } catch (Exception $e) {
+        handleError($e->getMessage(), 400);
+    }
+}
+
+/**
+ * Handle cleaning expired sessions
+ */
+function handleCleanSessions() {
+    if (cleanExpiredSessions()) {
+        sendSuccess(null, 'Expired sessions cleaned successfully');
+    } else {
+        handleError('Failed to clean expired sessions', 500);
+    }
 }
 ?>

@@ -1,200 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Fitness Tracker</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - FitTrack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #667eea;
+      --secondary: #764ba2;
+      --bg: #f9fafc;
+      --text-dark: #1a202c;
+      --text-light: #6b7280;
+      --radius: 14px;
+      --transition: all 0.3s ease;
+    }
+
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family:'Inter', sans-serif;
+      background: linear-gradient(135deg, #ece9f7, #fafbfc);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      color:var(--text-dark);
+    }
+
+    .auth-wrapper {
+      display:flex;
+      background:rgba(255,255,255,0.8);
+      backdrop-filter:blur(18px);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 20px 40px rgba(0,0,0,0.08);
+      width:100%;
+      max-width:890px;
+    }
+
+    .auth-left {
+      flex:1;
+      background:linear-gradient(135deg, var(--primary), var(--secondary));
+      color:#fff;
+      padding:60px 40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+    }
+
+    .auth-left h1 {
+      font-size:2.8rem;
+      margin-bottom:20px;
+    }
+    .auth-left p {
+      font-size:1.1rem;
+      opacity:0.95;
+      margin-bottom:25px;
+    }
+    .auth-left ul {
+      list-style:none;
+      text-align:left;
+      line-height:1.7;
+    }
+    .auth-left li::before {
+      content:'✓';
+      margin-right:8px;
+      color:#fff;
+      font-weight:600;
+    }
+
+    .auth-right {
+      flex:1;
+      padding:60px 50px;
+      background:white;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .form-header h2 {
+      font-size:2rem;
+      font-weight:700;
+      color:var(--text-dark);
+      margin-bottom:5px;
+    }
+    .form-header p {
+      color:var(--text-light);
+      font-size:1rem;
+    }
+
+    .form-group {
+      margin-top:20px;
+      position:relative;
+    }
+    .form-group label {
+      font-weight:500;
+      color:var(--text-dark);
+      font-size:0.9rem;
+      margin-bottom:8px;
+      display:block;
+    }
+    .form-group input {
+      width:100%;
+      padding:12px 45px 12px 16px;
+      border-radius:var(--radius);
+      border:2px solid #e5e7eb;
+      background:#fafafa;
+      font-size:1rem;
+      transition:var(--transition);
+    }
+    .form-group input:focus {
+      border-color:var(--primary);
+      background:white;
+      box-shadow:0 0 0 4px rgba(102, 126, 234, 0.15);
+      outline:none;
+    }
+
+    .password-toggle {
+      position:absolute;
+      right:12px;
+      top:50%;
+      transform:translateY(-15%);
+      background:none;
+      border:none;
+      color:#9ca3af;
+      font-size:1.1rem;
+      cursor:pointer;
+    }
+    .password-toggle:hover {color:#4b5563;}
+
+    .form-options {
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:0.9rem;
+    }
+    .remember-me {
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .remember-me label {cursor:pointer; color:var(--text-light);}
+    .forgot-password {
+      color:var(--primary);
+      text-decoration:none;
+      transition:var(--transition);
+    }
+    .forgot-password:hover {color:var(--secondary);}
+
+    .btn {
+      margin-top:25px;
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:var(--radius);
+      font-size:1rem;
+      font-weight:600;
+      color:white;
+      cursor:pointer;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      transition:var(--transition);
+    }
+    .btn:hover {
+      box-shadow:0 8px 20px rgba(102,126,234,0.3);
+      transform:translateY(-2px);
+    }
+
+    .social-login {
+      margin:25px 0;
+      text-align:center;
+      position:relative;
+    }
+    .social-login p {color:var(--text-light); margin-bottom:15px;}
+    .social-buttons {
+      display:flex;
+      gap:10px;
+    }
+    .social-btn {
+      flex:1;
+      padding:10px;
+      border:2px solid #e5e7eb;
+      border-radius:var(--radius);
+      font-weight:500;
+      color:var(--text-dark);
+      text-decoration:none;
+      transition:var(--transition);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .social-btn:hover {border-color:var(--primary); color:var(--primary);}
+
+    .auth-switch {
+      text-align:center;
+      margin-top:25px;
+      border-top:1px solid #e5e7eb;
+      padding-top:20px;
+    }
+    .auth-switch a {color:var(--primary); text-decoration:none;}
+    .auth-switch a:hover {color:var(--secondary);}
+
+    @media(max-width:768px){
+      .auth-wrapper {flex-direction:column; max-width:500px;}
+      .auth-left {padding:40px 30px;}
+      .auth-right {padding:40px 30px;}
+    }
+  </style>
+  <script>
+    // Password show/hide toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.querySelector('.password-toggle');
+      const passwordInput = document.getElementById('password');
+      toggle.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          toggle.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+        } else {
+          passwordInput.type = 'password';
+          toggle.innerHTML = '<i class="fa-solid fa-eye"></i>';
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="index.html">💪 FitTrack</a>
-                </div>
-                <nav class="main-nav">
-                    <a href="index.html">Home</a>
-                    <a href="calculators.html">Calculators</a>
-                    <a href="workouts.html">Workouts</a>
-                    <a href="pages/challenges.html">Challenges</a>
-                    <a href="tracker.html">Tracker</a>
-                    <a href="progress.html">Progress</a>
-                    <a href="pages/blog.html">Blog</a>
-                    <a href="about.html">About</a>
-                    <a href="login.html" class="active btn-login">Login/Signup</a>
-                </nav>
-                <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
-            </div>
+  <div class="auth-wrapper">
+    <div class="auth-left">
+      <h1>💪 FitTrack</h1>
+      <p>Continue your fitness journey with personalized tracking and motivation.</p>
+      <ul>
+        <li>Track daily workouts</li>
+        <li>Visualize your progress</li>
+        <li>Engage with your community</li>
+        <li>Reach your goals faster</li>
+      </ul>
+    </div>
+
+    <div class="auth-right">
+      <div class="form-header">
+        <h2>Welcome Back</h2>
+        <p>Sign in to continue your fitness journey</p>
+      </div>
+
+      <form>
+        <div class="form-group">
+          <label for="username">Email or Username</label>
+          <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
         </div>
-    </header>
-
-    <section class="section">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-box">
-                    <h2>Welcome back</h2>
-
-                    <div class="workout-tabs" style="margin-bottom: 1.5rem;">
-                        <button class="tab-btn active" data-tab="login">Login</button>
-                        <button class="tab-btn" data-tab="signup">Sign Up</button>
-                    </div>
-
-                    <div id="authMessage" class="alert" style="display:none;"></div>
-
-                    <form id="loginForm" class="auth-form active">
-                        <div class="form-group">
-                            <label for="loginEmail">Email</label>
-                            <input type="email" id="loginEmail" name="email" placeholder="you@example.com" required>
-                            <small id="loginEmailError" style="color: #991b1b; display:none;">Please enter a valid email</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Password</label>
-                            <input type="password" id="loginPassword" name="password" placeholder="••••••••" required>
-                            <small id="loginPasswordError" style="color: #991b1b; display:none;">Password is required</small>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
-                    </form>
-
-                    <form id="signupForm" class="auth-form">
-                        <div class="form-group">
-                            <label for="signupName">Full Name</label>
-                            <input type="text" id="signupName" name="name" placeholder="Your name" required>
-                            <small id="signupNameError" style="color: #991b1b; display:none;">Name is required</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupEmail">Email</label>
-                            <input type="email" id="signupEmail" name="email" placeholder="you@example.com" required>
-                            <small id="signupEmailError" style="color: #991b1b; display:none;">Please enter a valid email</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupPassword">Password</label>
-                            <input type="password" id="signupPassword" name="password" placeholder="Create a password" required>
-                            <small id="signupPasswordError" style="color: #991b1b; display:none;">Min 6 characters</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" name="confirm_password" placeholder="Repeat your password" required>
-                            <small id="confirmPasswordError" style="color: #991b1b; display:none;">Passwords must match</small>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="signupBtn">Create account</button>
-                    </form>
-
-                    <div class="auth-switch">
-                        <span id="authToggleText">New here?</span>
-                    </div>
-                </div>
-            </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+          <button type="button" class="password-toggle"><i class="fa-solid fa-eye"></i></button>
         </div>
-    </section>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <a href="index.html">Home</a>
-                    <a href="calculators.html">Calculators</a>
-                    <a href="workouts.html">Workouts</a>
-                    <a href="pages/challenges.html">Challenges</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <a href="tracker.html">Tracker</a>
-                    <a href="progress.html">Progress</a>
-                    <a href="pages/blog.html">Blog</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <a href="about.html">About</a>
-                    <div class="social-links">
-                        <a href="#" title="Facebook">📘</a>
-                        <a href="#" title="Instagram">📷</a>
-                        <a href="#" title="Twitter">🐦</a>
-                        <a href="#" title="YouTube">📺</a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 FitTrack. All rights reserved.</p>
-            </div>
+        <div class="form-options">
+          <div class="remember-me">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="#" class="forgot-password">Forgot password?</a>
         </div>
-    </footer>
+        <button type="submit" class="btn"><i class="fa-solid fa-sign-in-alt"></i> Sign In</button>
+      </form>
 
-    <script src="assets/js/app.js"></script>
-    <script>
-        // Tabs
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const tab = this.getAttribute('data-tab');
-                document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-                document.getElementById(tab + 'Form').classList.add('active');
-            });
-        });
+      <div class="social-login">
+        <p>Or continue with</p>
+        <div class="social-buttons">
+          <a class="social-btn" href="#"><i class="fab fa-google"></i> Google</a>
+          <a class="social-btn" href="#"><i class="fab fa-apple"></i> Apple</a>
+        </div>
+      </div>
 
-        function showAlert(message, type) {
-            const el = document.getElementById('authMessage');
-            el.textContent = message;
-            el.className = 'alert ' + (type === 'danger' ? 'alert-danger' : 'alert-success');
-            el.style.display = 'block';
-            setTimeout(() => { el.style.display = 'none'; }, 4000);
-        }
-
-        function isValidEmail(email) {
-            return /[^\s@]+@[^\s@]+\.[^\s@]+/.test(email);
-        }
-
-        // Login
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            let valid = true;
-            if (!isValidEmail(email)) { document.getElementById('loginEmailError').style.display = 'block'; valid = false; } else { document.getElementById('loginEmailError').style.display = 'none'; }
-            if (!password) { document.getElementById('loginPasswordError').style.display = 'block'; valid = false; } else { document.getElementById('loginPasswordError').style.display = 'none'; }
-            if (!valid) return;
-            const btn = document.getElementById('loginBtn'); btn.disabled = true;
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.email === email);
-            if (user && user.password === password) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                showAlert('Login successful! Redirecting...', 'success');
-                setTimeout(() => { window.location.href = 'tracker.html'; }, 1200);
-            } else {
-                showAlert('Invalid email or password', 'danger');
-            }
-            setTimeout(() => { btn.disabled = false; }, 800);
-        });
-
-        // Signup
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('signupName').value.trim();
-            const email = document.getElementById('signupEmail').value.trim();
-            const password = document.getElementById('signupPassword').value;
-            const confirm = document.getElementById('confirmPassword').value;
-            let valid = true;
-            if (!name) { document.getElementById('signupNameError').style.display = 'block'; valid = false; } else { document.getElementById('signupNameError').style.display = 'none'; }
-            if (!isValidEmail(email)) { document.getElementById('signupEmailError').style.display = 'block'; valid = false; } else { document.getElementById('signupEmailError').style.display = 'none'; }
-            if (!password || password.length < 6) { document.getElementById('signupPasswordError').style.display = 'block'; valid = false; } else { document.getElementById('signupPasswordError').style.display = 'none'; }
-            if (password !== confirm) { document.getElementById('confirmPasswordError').style.display = 'block'; valid = false; } else { document.getElementById('confirmPasswordError').style.display = 'none'; }
-            if (!valid) return;
-            const btn = document.getElementById('signupBtn'); btn.disabled = true;
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            if (users.some(u => u.email === email)) {
-                showAlert('Email already in use', 'danger');
-                btn.disabled = false;
-                return;
-            }
-            const newUser = { id: 'user_' + Date.now(), name, email, password, created_at: new Date().toISOString() };
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('currentUser', JSON.stringify(newUser));
-            showAlert('Account created! Redirecting...', 'success');
-            setTimeout(() => { window.location.href = 'tracker.html'; }, 1200);
-        });
-    </script>
+      <div class="auth-switch">
+        <p>Don’t have an account? <a href="signup.html">Sign up now</a></p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

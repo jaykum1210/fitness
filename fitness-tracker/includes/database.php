@@ -126,4 +126,19 @@ function testConnection() {
         return false;
     }
 }
+
+/**
+ * Initialize database tables
+ */
+function initializeDatabase() {
+    try {
+        $sql = file_get_contents(__DIR__ . '/../database/init.sql');
+        $pdo = getDB();
+        $pdo->exec($sql);
+        return true;
+    } catch (Exception $e) {
+        error_log("Database initialization failed: " . $e->getMessage());
+        return false;
+    }
+}
 ?>
