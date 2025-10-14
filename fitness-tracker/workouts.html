@@ -29,120 +29,168 @@
         </div>
     </header>
 
-    <section class="section workout-page">
+    <!-- Hero Section -->
+    <section class="workout-hero">
         <div class="container">
-            <h1 class="page-title">Workout Library</h1>
+            <h1 class="fade-in">Transform Your Body</h1>
+            <p class="fade-in stagger-1">Discover professional workout routines designed to help you achieve your fitness goals. From strength training to cardio, find the perfect workout for your level.</p>
+        </div>
+    </section>
 
-            <div class="workout-tabs">
-                <button class="tab-btn active" data-filter="all">All</button>
-                <button class="tab-btn" data-filter="strength">Strength</button>
-                <button class="tab-btn" data-filter="cardio">Cardio</button>
-                <button class="tab-btn" data-filter="flexibility">Flexibility</button>
+    <section class="section">
+        <div class="container">
+            <!-- Category Filter -->
+            <div class="workout-categories fade-in stagger-2">
+                <button class="category-btn active" data-filter="all">All Workouts</button>
+                <button class="category-btn" data-filter="strength">💪 Strength</button>
+                <button class="category-btn" data-filter="cardio">🏃 Cardio</button>
+                <button class="category-btn" data-filter="flexibility">🧘 Flexibility</button>
             </div>
             
-            <div class="workout-grid">
-                <div class="card workout-card" data-category="strength">
-                    <div class="workout-image">
+            <!-- Workout Grid -->
+            <div class="workout-grid-modern">
+                <!-- Full Body Workout -->
+                <div class="workout-card-modern fade-in stagger-1" data-category="strength">
+                    <div class="workout-image-modern">
                         <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" alt="Full Body Workout">
+                        <div class="workout-overlay">
+                            <div class="workout-overlay-content">
+                                <h4>Full Body Power</h4>
+                                <p>Complete muscle engagement</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="workout-details">
-                        <h3>Full Body Workout</h3>
-                        <p>A complete workout targeting all major muscle groups</p>
-                        <div class="workout-meta">
-                            <span>45 min</span>
-                            <span>Intermediate</span>
+                    <div class="workout-content">
+                        <h3 class="workout-title">Full Body Workout</h3>
+                        <p class="workout-description">A comprehensive workout targeting all major muscle groups with compound movements and core strengthening exercises.</p>
+                        <div class="workout-meta-modern">
+                            <span class="workout-meta-item duration">⏱️ 45 min</span>
+                            <span class="workout-meta-item level">🎯 Intermediate</span>
+                            <span class="workout-meta-item sets">📋 3 sets</span>
                         </div>
-                        <div class="exercise-tags">
-                            <span class="exercise-tag">Squats</span>
-                            <span class="exercise-tag">Push-ups</span>
-                            <span class="exercise-tag">Rows</span>
-                            <span class="exercise-tag">Plank</span>
+                        <div class="exercise-tags-modern">
+                            <span class="exercise-tag-modern">Squats</span>
+                            <span class="exercise-tag-modern">Push-ups</span>
+                            <span class="exercise-tag-modern">Rows</span>
+                            <span class="exercise-tag-modern">Plank</span>
                         </div>
-                        <a href="pages/workouts/full-body.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                        <a href="pages/workouts/full-body.html" class="workout-btn-modern">Start Workout</a>
                     </div>
                 </div>
                 
-                <div class="card workout-card" data-category="strength">
-                    <div class="workout-image">
+                <!-- Upper Body Strength -->
+                <div class="workout-card-modern fade-in stagger-2" data-category="strength">
+                    <div class="workout-image-modern">
                         <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=1200&auto=format&fit=crop" alt="Upper Body Strength">
+                        <div class="workout-overlay">
+                            <div class="workout-overlay-content">
+                                <h4>Upper Body Focus</h4>
+                                <p>Build strength & definition</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="workout-details">
-                        <h3>Upper Body Strength</h3>
-                        <p>Focus on chest, back, shoulders and arms</p>
-                        <div class="workout-meta">
-                            <span>30 min</span>
-                            <span>Beginner</span>
+                    <div class="workout-content">
+                        <h3 class="workout-title">Upper Body Strength</h3>
+                        <p class="workout-description">Target your chest, back, shoulders, and arms with this balanced push-pull routine designed for strength and muscle development.</p>
+                        <div class="workout-meta-modern">
+                            <span class="workout-meta-item duration">⏱️ 30 min</span>
+                            <span class="workout-meta-item level">🎯 Beginner</span>
+                            <span class="workout-meta-item sets">📋 3 sets</span>
                         </div>
-                        <div class="exercise-tags">
-                            <span class="exercise-tag">Bench Press</span>
-                            <span class="exercise-tag">Pull-ups</span>
-                            <span class="exercise-tag">Shoulder Press</span>
-                            <span class="exercise-tag">Curls</span>
+                        <div class="exercise-tags-modern">
+                            <span class="exercise-tag-modern">Bench Press</span>
+                            <span class="exercise-tag-modern">Pull-ups</span>
+                            <span class="exercise-tag-modern">Shoulder Press</span>
+                            <span class="exercise-tag-modern">Curls</span>
                         </div>
-                        <a href="pages/workouts/upper-body.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                        <a href="pages/workouts/upper-body.html" class="workout-btn-modern">Start Workout</a>
                     </div>
                 </div>
                 
-                <div class="card workout-card" data-category="strength">
-                    <div class="workout-image">
+                <!-- Lower Body Power -->
+                <div class="workout-card-modern fade-in stagger-3" data-category="strength">
+                    <div class="workout-image-modern">
                         <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop" alt="Lower Body Power">
+                        <div class="workout-overlay">
+                            <div class="workout-overlay-content">
+                                <h4>Lower Body Power</h4>
+                                <p>Strong legs & glutes</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="workout-details">
-                        <h3>Lower Body Power</h3>
-                        <p>Build strength in legs, glutes and core</p>
-                        <div class="workout-meta">
-                            <span>40 min</span>
-                            <span>Intermediate</span>
+                    <div class="workout-content">
+                        <h3 class="workout-title">Lower Body Power</h3>
+                        <p class="workout-description">Build explosive power and strength in your legs, glutes, and core with this comprehensive lower body training session.</p>
+                        <div class="workout-meta-modern">
+                            <span class="workout-meta-item duration">⏱️ 40 min</span>
+                            <span class="workout-meta-item level">🎯 Intermediate</span>
+                            <span class="workout-meta-item sets">📋 4 sets</span>
                         </div>
-                        <div class="exercise-tags">
-                            <span class="exercise-tag">Deadlifts</span>
-                            <span class="exercise-tag">Lunges</span>
-                            <span class="exercise-tag">Hip Thrusts</span>
-                            <span class="exercise-tag">Calf Raises</span>
+                        <div class="exercise-tags-modern">
+                            <span class="exercise-tag-modern">Deadlifts</span>
+                            <span class="exercise-tag-modern">Lunges</span>
+                            <span class="exercise-tag-modern">Hip Thrusts</span>
+                            <span class="exercise-tag-modern">Calf Raises</span>
                         </div>
-                        <a href="pages/workouts/lower-body.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                        <a href="pages/workouts/lower-body.html" class="workout-btn-modern">Start Workout</a>
                     </div>
                 </div>
                 
-                <div class="card workout-card" data-category="cardio">
-                    <div class="workout-image">
+                <!-- HIIT Cardio -->
+                <div class="workout-card-modern fade-in stagger-4" data-category="cardio">
+                    <div class="workout-image-modern">
                         <img src="https://images.unsplash.com/photo-1526406915894-6c4aa1b54f09?q=80&w=1200&auto=format&fit=crop" alt="HIIT Cardio">
+                        <div class="workout-overlay">
+                            <div class="workout-overlay-content">
+                                <h4>HIIT Intensity</h4>
+                                <p>Maximum calorie burn</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="workout-details">
-                        <h3>HIIT Cardio</h3>
-                        <p>High intensity intervals for maximum calorie burn</p>
-                        <div class="workout-meta">
-                            <span>25 min</span>
-                            <span>Advanced</span>
+                    <div class="workout-content">
+                        <h3 class="workout-title">HIIT Cardio</h3>
+                        <p class="workout-description">High-intensity interval training that maximizes calorie burn and improves cardiovascular fitness in minimal time.</p>
+                        <div class="workout-meta-modern">
+                            <span class="workout-meta-item duration">⏱️ 25 min</span>
+                            <span class="workout-meta-item level">🎯 Advanced</span>
+                            <span class="workout-meta-item sets">📋 12 rounds</span>
                         </div>
-                        <div class="exercise-tags">
-                            <span class="exercise-tag">Sprints</span>
-                            <span class="exercise-tag">Burpees</span>
-                            <span class="exercise-tag">Mountain Climbers</span>
-                            <span class="exercise-tag">Jump Squats</span>
+                        <div class="exercise-tags-modern">
+                            <span class="exercise-tag-modern">Sprints</span>
+                            <span class="exercise-tag-modern">Burpees</span>
+                            <span class="exercise-tag-modern">Mountain Climbers</span>
+                            <span class="exercise-tag-modern">Jump Squats</span>
                         </div>
-                        <a href="pages/workouts/hiit.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                        <a href="pages/workouts/hiit.html" class="workout-btn-modern">Start Workout</a>
                     </div>
                 </div>
                 
-                <div class="card workout-card" data-category="flexibility">
-                    <div class="workout-image">
+                <!-- Yoga Flow -->
+                <div class="workout-card-modern fade-in stagger-5" data-category="flexibility">
+                    <div class="workout-image-modern">
                         <img src="https://images.unsplash.com/photo-1571019613914-85f342c55f38?q=80&w=1200&auto=format&fit=crop" alt="Yoga Flow">
+                        <div class="workout-overlay">
+                            <div class="workout-overlay-content">
+                                <h4>Yoga Flow</h4>
+                                <p>Mindful movement</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="workout-details">
-                        <h3>Yoga Flow</h3>
-                        <p>Improve flexibility and mindfulness</p>
-                        <div class="workout-meta">
-                            <span>30 min</span>
-                            <span>All Levels</span>
+                    <div class="workout-content">
+                        <h3 class="workout-title">Yoga Flow</h3>
+                        <p class="workout-description">Improve flexibility, balance, and mindfulness with this calming yoga sequence perfect for recovery and stress relief.</p>
+                        <div class="workout-meta-modern">
+                            <span class="workout-meta-item duration">⏱️ 30 min</span>
+                            <span class="workout-meta-item level">🎯 All Levels</span>
+                            <span class="workout-meta-item sets">📋 Breath-led</span>
                         </div>
-                        <div class="exercise-tags">
-                            <span class="exercise-tag">Sun Salutation</span>
-                            <span class="exercise-tag">Warrior II</span>
-                            <span class="exercise-tag">Downward Dog</span>
-                            <span class="exercise-tag">Pigeon Pose</span>
+                        <div class="exercise-tags-modern">
+                            <span class="exercise-tag-modern">Sun Salutation</span>
+                            <span class="exercise-tag-modern">Warrior II</span>
+                            <span class="exercise-tag-modern">Downward Dog</span>
+                            <span class="exercise-tag-modern">Pigeon Pose</span>
                         </div>
-                        <a href="pages/workouts/yoga-flow.html" class="btn btn-primary" style="margin-top: 1rem;">View Workout</a>
+                        <a href="pages/workouts/yoga-flow.html" class="workout-btn-modern">Start Workout</a>
                     </div>
                 </div>
             </div>
@@ -184,17 +232,51 @@
 
     <script src="assets/js/app.js"></script>
     <script>
-        // Tabs filtering
-        document.querySelectorAll('.tab-btn').forEach(button => {
+        // Enhanced category filtering with animations
+        document.querySelectorAll('.category-btn').forEach(button => {
             button.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
+                
                 const filter = button.getAttribute('data-filter');
-                document.querySelectorAll('.workout-card').forEach(card => {
+                const cards = document.querySelectorAll('.workout-card-modern');
+                
+                cards.forEach((card, index) => {
                     const cat = card.getAttribute('data-category');
-                    card.style.display = (filter === 'all' || cat === filter) ? 'flex' : 'none';
+                    const shouldShow = filter === 'all' || cat === filter;
+                    
+                    if (shouldShow) {
+                        card.style.display = 'flex';
+                        card.style.animation = `fadeInUp 0.6s ease-out ${index * 0.1}s both`;
+                    } else {
+                        card.style.display = 'none';
+                    }
                 });
             });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all workout cards
+        document.querySelectorAll('.workout-card-modern').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(card);
         });
     </script>
 </body>

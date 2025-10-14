@@ -1,382 +1,262 @@
-# FitTrack - Complete Fitness Tracker Website
+# FitTrack - Fitness Tracker Website
 
-A comprehensive fitness tracking web application built with HTML, CSS, and PHP featuring 11 complete pages with advanced functionality.
+A comprehensive fitness tracking website built with PHP, MySQL, HTML, CSS, and JavaScript. Track workouts, monitor progress, set goals, and achieve your fitness objectives.
 
-## 🌟 Features Overview
+## Features
 
-### 11 Complete Pages
-1. **Home** - Hero section, motivational quotes, quick access cards, feature previews
-2. **Calculators** - BMI, Calories, and Water Intake calculators (fully functional)
-3. **Workouts** - Searchable workout library with 10+ exercises, filter by difficulty
-4. **Challenges** - 6 structured fitness challenges with progress tracking
-5. **Nutrition** - 8+ healthy recipes with macro breakdowns and filtering
-6. **Tracker** - Daily workout logging with real-time stats
-7. **Progress** - Charts, graphs, calendar view, achievement badges
-8. **Blog** - 6 fitness articles with category filtering
-9. **Community** - Success stories, forums, member statistics
-10. **Login/Signup** - User authentication with password hashing
-11. **About** - Mission statement, team info, contact details
+### 🏋️ Workout Management
+- **Pre-built Workout Routines**: Full body, upper body, lower body, HIIT, and yoga workouts
+- **Exercise Library**: Comprehensive database of exercises with instructions and tips
+- **Real-time Tracking**: Track sets, reps, weight, and duration during workouts
+- **Workout History**: View past workouts with performance metrics
+- **Favorites System**: Save your preferred workouts for quick access
 
-### Key Functionality
-✅ **User System**
-- Registration and login with secure password hashing
-- Session-based authentication
-- User profile management
+### 📊 Progress Tracking
+- **Weight & Body Metrics**: Track weight, body fat percentage, and muscle mass
+- **Visual Progress Charts**: See your progress over time with interactive charts
+- **Goal Setting**: Set and track fitness goals with progress indicators
+- **Statistics Dashboard**: View comprehensive workout and progress statistics
 
-✅ **Workout Tracking**
-- Daily workout logging (exercise, sets, reps, duration, calories)
-- Today's summary with live stats
-- Edit and delete entries
-- Pre-fill workouts from library
+### 🎯 User Management
+- **Secure Registration & Login**: Password hashing and session management
+- **User Profiles**: Personalize your fitness journey with profile information
+- **Activity Levels**: Set your activity level for accurate calorie calculations
+- **Fitness Goals**: Choose from weight loss, muscle gain, maintenance, and more
 
-✅ **Progress Visualization**
-- 7-day calorie burn chart
-- Workout consistency calendar
-- Achievement badge system (6 badges)
-- Total statistics dashboard
+### 🏆 Challenges & Motivation
+- **Fitness Challenges**: Participate in community challenges
+- **Progress Rewards**: Celebrate achievements and milestones
+- **Motivational Content**: Daily quotes and fitness tips
+- **Success Stories**: Get inspired by community achievements
 
-✅ **Fitness Calculators**
-- BMI Calculator with category classification
-- Calorie Calculator with activity level adjustments
-- Water Intake Calculator based on weight and activity
+### 📱 Responsive Design
+- **Mobile-First**: Fully responsive design for all devices
+- **Modern UI**: Clean, professional interface with smooth animations
+- **Intuitive Navigation**: Easy-to-use interface for all fitness levels
+- **Accessibility**: WCAG compliant design for inclusive access
 
-✅ **Workout Library**
-- 10 pre-loaded exercises
-- Search functionality
-- Filter by difficulty (Beginner/Intermediate/Advanced)
-- Quick add to tracker
+## Technology Stack
 
-✅ **Challenges System**
-- 6 structured challenges (7-180 days)
-- Difficulty levels and goals
-- Participant counts and success rates
-- Join/track challenges
+- **Backend**: PHP 7.4+ with PDO for database operations
+- **Database**: MySQL 5.7+ with comprehensive schema
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Security**: CSRF protection, SQL injection prevention, XSS protection
+- **Architecture**: MVC pattern with API endpoints
 
-✅ **Nutrition Guide**
-- 8 healthy recipes with full macro breakdown
-- Filter by meal type (Breakfast/Lunch/Dinner/Snack)
-- Prep time and ingredients
-- Modal view with detailed instructions
+## Installation
 
-✅ **Blog Platform**
-- 6 fitness articles
-- Category filtering (Tips/Nutrition/Workouts/Motivation)
-- Read time estimates
-- Modal reading view
-
-✅ **Community Features**
-- Member statistics (15,847 active members)
-- Success stories with transformations
-- Forum categories
-- Motivation and accountability
-
-✅ **Design Features**
-- Fully responsive mobile-friendly design
-- Smooth animations and transitions
-- Modal popups for detailed content
-- Clean gradient color scheme
-- Rotating motivational quotes
-- "Surprise Me" random tips feature
-
-## 🚀 Quick Start
-
-### Requirements
+### Prerequisites
 - PHP 7.4 or higher
-- Web server (Apache/Nginx) or PHP built-in server
+- MySQL 5.7 or higher
+- Web server (Apache/Nginx)
+- Modern web browser
 
-### Installation
+### Step 1: Download and Setup
+1. Download or clone the project files
+2. Place the `fitness-tracker` folder in your web server directory
+3. Ensure proper file permissions (755 for directories, 644 for files)
 
-1. Navigate to the project directory:
-```bash
-cd /home/workspace/fitness-tracker
-```
+### Step 2: Database Configuration
+1. Create a MySQL database named `fitness_tracker`
+2. Update database credentials in `includes/database.php`:
+   ```php
+   define('DB_HOST', 'localhost');
+   define('DB_NAME', 'fitness_tracker');
+   define('DB_USER', 'your_username');
+   define('DB_PASS', 'your_password');
+   ```
 
-2. Set proper permissions for data directory:
-```bash
-chmod 755 data
-chmod 644 data/*.json
-```
+### Step 3: Database Installation
+1. Visit `http://your-domain/fitness-tracker/install.php`
+2. The script will automatically create all tables and insert sample data
+3. **Important**: Delete or rename `install.php` after successful installation
 
-3. Start the PHP built-in server:
-```bash
-php -S localhost:8000
-```
+### Step 4: Initial Setup
+1. Visit `http://your-domain/fitness-tracker/register.php`
+2. Create your first admin user account
+3. Start using the fitness tracker!
 
-4. Open your browser and visit:
-```
-http://localhost:8000
-```
-
-### First Steps
-1. Click "Login/Signup" in the header
-2. Create a new account (use any email format)
-3. Start tracking your workouts!
-4. Explore all features: calculators, workouts, challenges, nutrition, blog, community
-
-## 📁 File Structure
+## File Structure
 
 ```
 fitness-tracker/
-├── index.php              # Home page with feature previews
-├── calculators.php        # BMI, Calories, Water calculators
-├── workouts.php          # Workout library with search/filter
-├── tracker.php           # Daily workout tracker
-├── progress.php          # Progress charts and badges
-├── login.php             # Login/Signup forms
-├── logout.php            # Logout handler
-├── about.php             # About page
-├── pages/
-│   ├── challenges.php    # Fitness challenges
-│   ├── nutrition.php     # Meal plans and recipes
-│   ├── blog.php          # Blog articles
-│   └── community.php     # Community hub
-├── includes/
-│   ├── config.php        # Configuration and helper functions
-│   ├── header.php        # Header navigation template
-│   └── footer.php        # Footer template
-├── assets/
+├── api/                    # API endpoints
+│   ├── auth.php           # Authentication API
+│   ├── workouts.php       # Workout management API
+│   └── progress.php       # Progress tracking API
+├── assets/                # Static assets
 │   ├── css/
-│   │   └── style.css     # All styles (1000+ lines)
+│   │   └── style.css      # Main stylesheet
 │   ├── js/
-│   │   └── app.js        # Frontend JavaScript
-│   └── images/           # Image placeholders
-├── data/
-│   ├── users.json        # User accounts (secure hashed passwords)
-│   ├── tracker.json      # Workout log entries
-│   ├── workouts.json     # Pre-loaded workout library (10 exercises)
-│   ├── challenges.json   # Challenge data (6 challenges)
-│   ├── recipes.json      # Nutrition recipes (8 recipes)
-│   └── blog.json         # Blog posts (6 articles)
-└── README.md
+│   │   └── app.js         # JavaScript functionality
+│   └── images/            # Image assets
+├── database/
+│   └── schema.sql         # Database schema
+├── includes/              # PHP includes
+│   ├── config.php         # Configuration and utilities
+│   ├── database.php       # Database connection
+│   ├── header.php         # Common header
+│   └── footer.php         # Common footer
+├── pages/                 # Additional pages
+│   ├── workouts/          # Individual workout pages
+│   ├── blog.php           # Blog functionality
+│   └── challenges.php     # Challenges page
+├── data/                  # JSON data files (fallback)
+├── index.php              # Homepage
+├── login.php              # Login page
+├── register.php           # Registration page
+├── workouts.php           # Workout listing
+├── tracker.php            # Workout tracking
+├── progress.php           # Progress dashboard
+├── calculators.php        # Fitness calculators
+├── about.php              # About page
+└── install.php            # Database installer
 ```
 
-## 💾 Data Storage
+## API Endpoints
 
-All data is stored in JSON files in the `data/` directory:
+### Authentication (`api/auth.php`)
+- `POST ?action=register` - User registration
+- `POST ?action=login` - User login
+- `POST ?action=logout` - User logout
+- `GET ?action=check` - Check authentication status
+- `GET ?action=profile` - Get user profile
+- `POST ?action=update_profile` - Update user profile
 
-- **users.json** - User accounts with bcrypt hashed passwords
-- **tracker.json** - All workout log entries with user_id references
-- **workouts.json** - 10 pre-loaded exercises with categories
-- **challenges.json** - 6 structured challenges with stats
-- **recipes.json** - 8 healthy recipes with macro breakdowns
-- **blog.json** - 6 blog articles with metadata
+### Workouts (`api/workouts.php`)
+- `GET ?action=list` - List workouts with filtering
+- `GET ?action=get&id=X` - Get single workout with exercises
+- `GET ?action=categories` - Get workout categories
+- `GET ?action=exercises` - Get exercises with filtering
+- `POST ?action=start_session` - Start workout session
+- `POST ?action=end_session` - End workout session
+- `POST ?action=log_exercise` - Log exercise performance
+- `POST ?action=favorite` - Add workout to favorites
+- `POST ?action=unfavorite` - Remove workout from favorites
 
-**No database setup required!** The JSON file system works perfectly for small to medium traffic sites.
+### Progress (`api/progress.php`)
+- `GET ?action=dashboard` - Get dashboard data
+- `GET ?action=workout_history` - Get workout history
+- `GET ?action=progress_entries` - Get progress entries
+- `POST ?action=add_progress` - Add progress entry
+- `GET ?action=goals` - Get user goals
+- `POST ?action=add_goal` - Add new goal
+- `POST ?action=update_goal` - Update goal progress
+- `POST ?action=delete_goal` - Delete goal
+- `GET ?action=stats` - Get user statistics
+- `GET ?action=challenges` - Get available challenges
 
-## 🎯 Usage Guide
+## Database Schema
 
-### For Users
+### Core Tables
+- **users**: User accounts and profiles
+- **workout_categories**: Workout categories (Strength, Cardio, etc.)
+- **workouts**: Workout routines with metadata
+- **exercises**: Individual exercises with instructions
+- **workout_exercises**: Many-to-many relationship between workouts and exercises
 
-**Getting Started:**
-1. Sign up with email and password
-2. Navigate through the main menu to explore features
-3. Use calculators to understand your fitness metrics
-4. Browse workouts and add them to your tracker
-5. Log daily workouts with sets, reps, and calories
-6. View your progress with charts and badges
-7. Join challenges to stay motivated
-8. Browse healthy recipes for meal ideas
-9. Read blog articles for tips and advice
-10. Connect with the community
+### Tracking Tables
+- **workout_sessions**: User workout sessions
+- **exercise_logs**: Individual exercise performance logs
+- **user_progress**: Progress tracking data (weight, measurements)
+- **user_goals**: User fitness goals and progress
 
-**Daily Workflow:**
-1. Log in to your account
-2. Go to Tracker page
-3. Add today's workouts
-4. Check your Progress page for stats
-5. Stay motivated with quotes and community
+### Additional Tables
+- **challenges**: Fitness challenges
+- **user_challenges**: User challenge participation
+- **blog_posts**: Blog articles
+- **user_favorites**: User favorite workouts
 
-### For Developers
+## Security Features
 
-**Customization:**
+- **Password Hashing**: Secure password storage using PHP's password_hash()
+- **CSRF Protection**: Cross-site request forgery protection
+- **SQL Injection Prevention**: Prepared statements with PDO
+- **XSS Protection**: Input sanitization and output escaping
+- **Session Security**: Secure session management
+- **Input Validation**: Comprehensive server-side validation
 
-1. **Add more workouts**: Edit `data/workouts.json`
-   ```json
-   {
-     "id": 11,
-     "name": "Bicep Curls",
-     "category": "intermediate",
-     "bodyPart": "arms",
-     "sets": 3,
-     "reps": 12,
-     "description": "Build bicep strength"
-   }
-   ```
+## Customization
 
-2. **Add more challenges**: Edit `data/challenges.json`
+### Adding New Workouts
+1. Insert into `workouts` table with proper category_id
+2. Add exercises to `workout_exercises` table
+3. Ensure exercises exist in `exercises` table
 
-3. **Add recipes**: Edit `data/recipes.json`
+### Modifying UI
+- Update `assets/css/style.css` for styling changes
+- Modify PHP templates for layout changes
+- Add JavaScript functionality in `assets/js/app.js`
 
-4. **Add blog posts**: Edit `data/blog.json`
+### Adding Features
+- Create new API endpoints in `api/` directory
+- Add corresponding database tables if needed
+- Update frontend pages to use new functionality
 
-5. **Modify motivational quotes**: Edit `assets/js/app.js`
-   ```javascript
-   const motivationalQuotes = [
-       "Your new quote here",
-       // ... add more
-   ];
-   ```
+## Troubleshooting
 
-6. **Customize styles**: Edit `assets/css/style.css`
-   - Change color scheme in `:root` variables
-   - Modify component styles
-   - Adjust responsive breakpoints
+### Common Issues
 
-7. **Add images**: Place images in `assets/images/` and update HTML
+**Database Connection Failed**
+- Check database credentials in `includes/database.php`
+- Ensure MySQL server is running
+- Verify database exists and user has proper permissions
 
-## 🎨 Customization
+**Installation Fails**
+- Check PHP error logs
+- Ensure MySQL user has CREATE privileges
+- Verify PHP PDO MySQL extension is installed
 
-### Color Scheme
-The site uses CSS variables for easy theming. Edit `style.css`:
-```css
-:root {
-    --primary: #6366f1;        /* Main brand color */
-    --secondary: #10b981;      /* Success/positive color */
-    --danger: #ef4444;         /* Warning/delete color */
-    --text: #1f2937;           /* Main text */
-    --bg: #ffffff;             /* Background */
-}
-```
+**Pages Not Loading**
+- Check file permissions (755 for directories, 644 for files)
+- Verify web server configuration
+- Check PHP error logs
 
-### Layout
-- Fully responsive with mobile-first approach
-- Breakpoint at 768px for tablet/mobile
-- Grid-based card layouts
-- Flexbox navigation
+**API Calls Failing**
+- Check browser console for JavaScript errors
+- Verify API endpoints are accessible
+- Check PHP error logs for server-side issues
 
-## 🚀 Deployment
+### Performance Optimization
 
-### Production Server (Apache/Nginx)
+**Database Optimization**
+- Add indexes on frequently queried columns
+- Use EXPLAIN to analyze query performance
+- Consider database connection pooling for high traffic
 
-1. Upload all files to your web root directory
+**Frontend Optimization**
+- Minify CSS and JavaScript files
+- Optimize images and use appropriate formats
+- Enable browser caching for static assets
 
-2. Set proper permissions:
-```bash
-chmod 755 data
-chmod 644 data/*.json
-chmod 755 assets/css assets/js assets/images
-```
+## Contributing
 
-3. Configure virtual host (Apache example):
-```apache
-<VirtualHost *:80>
-    ServerName yoursite.com
-    DocumentRoot /var/www/fitness-tracker
-    
-    <Directory /var/www/fitness-tracker>
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>
-```
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-4. Enable PHP and mod_rewrite (if needed)
+## License
 
-5. Restart web server
+This project is open source and available under the MIT License.
 
-### Security Notes for Production
+## Support
 
-⚠️ **Important Security Measures:**
+For support and questions:
+- Check the troubleshooting section
+- Review PHP and MySQL error logs
+- Ensure all prerequisites are met
+- Verify database configuration
 
-1. **Enable HTTPS** - Use Let's Encrypt for free SSL
-2. **Session Security** - Set secure session parameters in `config.php`:
-   ```php
-   ini_set('session.cookie_httponly', 1);
-   ini_set('session.cookie_secure', 1);
-   ini_set('session.use_strict_mode', 1);
-   ```
-3. **Rate Limiting** - Add login attempt limits
-4. **CSRF Protection** - Implement CSRF tokens for forms
-5. **Input Validation** - Add server-side validation
-6. **File Permissions** - Ensure data/ is not web-accessible (move outside web root)
-7. **Backup Data** - Regular automated backups of JSON files
-8. **Error Logging** - Enable PHP error logging, disable display
+## Changelog
 
-### Shared Hosting Deployment
-
-1. Upload via FTP/SFTP
-2. Place files in `public_html` or equivalent
-3. Ensure PHP version compatibility
-4. Test all features after upload
-
-## 🌐 Browser Support
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-
-## 📊 Tech Stack
-- **Frontend**: HTML5, CSS3 (Grid, Flexbox), Vanilla JavaScript
-- **Backend**: PHP 7.4+
-- **Storage**: JSON files
-- **Authentication**: PHP Sessions + password_hash()
-- **Charts**: Custom CSS-based visualizations
-
-## 🔧 Advanced Features to Add
-
-**Potential Enhancements:**
-- [ ] MySQL/PostgreSQL database integration
-- [ ] Export progress data (CSV, PDF)
-- [ ] Social features (share achievements, follow users)
-- [ ] Custom workout builder
-- [ ] Workout video tutorials
-- [ ] Mobile app (PWA)
-- [ ] Email notifications
-- [ ] API for third-party integrations
-- [ ] Meal planner calendar
-- [ ] Exercise form videos
-- [ ] Progress photos upload
-- [ ] Weight tracking graph
-- [ ] Personal trainer matching
-- [ ] Premium subscription features
-
-## 🐛 Troubleshooting
-
-**Common Issues:**
-
-1. **Blank page / PHP errors**
-   - Check PHP version (must be 7.4+)
-   - Enable error display: `ini_set('display_errors', 1);`
-   - Check file permissions
-
-2. **Can't save data**
-   - Verify `data/` directory is writable
-   - Check JSON file permissions
-
-3. **Styles not loading**
-   - Verify `assets/css/style.css` path
-   - Check browser console for 404 errors
-   - Clear browser cache
-
-4. **Login not working**
-   - Check if sessions are enabled in PHP
-   - Verify `session_start()` is called
-   - Check browser cookies are enabled
-
-## 📞 Support
-- **Email**: support@fittrack.com
-- **Phone**: (555) 123-4567
-- **GitHub**: [Create an issue]
-
-## 📄 License
-© 2025 FitTrack. All rights reserved.
-
----
-
-## 🎉 What Makes This Special
-
-This is a **complete, production-ready fitness tracking application** with:
-- ✨ 11 fully functional pages
-- 💪 Real workout tracking with persistence
-- 📊 Progress visualization with charts
-- 🏆 Gamification (badges, challenges)
-- 🥗 Nutrition guidance with recipes
-- 📚 Blog platform for content
-- 👥 Community features
-- 🎨 Beautiful, responsive design
-- 🔒 Secure authentication system
-- 🚀 Zero dependencies, pure PHP/HTML/CSS/JS
-- 📦 No database required, JSON-based storage
-
-**Built by Jay** | Track Your Fitness. Transform Your Life.
+### Version 1.0.0
+- Initial release
+- Complete workout tracking system
+- Progress monitoring and goal setting
+- User authentication and profiles
+- Responsive design
+- API endpoints for all functionality
+- Comprehensive database schema
+- Security features implemented
